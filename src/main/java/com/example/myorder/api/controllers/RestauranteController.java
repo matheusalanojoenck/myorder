@@ -9,5 +9,4 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Restaurantes")
 public class RestauranteController {
 
-
 }
