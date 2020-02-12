@@ -2,34 +2,34 @@ package com.example.myorder.services;
 
 import com.example.myorder.api.dto.CreateRestaurantDto;
 import com.example.myorder.api.dto.RestaurantResponseDto;
-import com.example.myorder.entities.Restaurante;
-import com.example.myorder.repositories.RestauranteRepository;
+import com.example.myorder.entities.Restaurant;
+import com.example.myorder.repositories.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class RestauranteService {
+public class RestaurantService {
 
     @Autowired
-    private RestauranteRepository restauranteRepository;
+    private RestaurantRepository restaurantRepository;
 
     public void createRestaurant(CreateRestaurantDto createRestaurantDto) {
         //TODO validações
 
-        Restaurante restaurant = new Restaurante()
+        Restaurant restaurant = new Restaurant()
         .setEmail(createRestaurantDto.getEmail())
         .setName(createRestaurantDto.getName())
         .setPhone(createRestaurantDto.getPhone());
 
-        restauranteRepository.save(restaurant);
+        restaurantRepository.save(restaurant);
     }
 
     public RestaurantResponseDto getById(Integer id) {
 
-        Optional<Restaurante> optional = restauranteRepository.findById(id);
-        Restaurante restaurant = optional.get();
+        Optional<Restaurant> optional = restaurantRepository.findById(id);
+        Restaurant restaurant = optional.get();
         return new RestaurantResponseDto()
                 .setEmail(restaurant.getEmail())
                 .setId(restaurant.getId())
