@@ -11,7 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-@PropertySource(value = "classpath: META-INF/v1_myorder.properties")
+@PropertySource(value = "classpath:META-INF/v1_myorder.properties")
 public class SwaggerConfig {
     private static final String BASE_PATH_APP = "/myorder";
     private static final String BASE_PATH_REST = "/api/";
@@ -21,7 +21,7 @@ public class SwaggerConfig {
     public Docket apis(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.exemple.myorder"))
+                .apis(RequestHandlerSelectors.basePackage("com.example.myorder"))
                 .paths(PathSelectors.any())
                 .build();
     }
