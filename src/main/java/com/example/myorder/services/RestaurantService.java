@@ -35,6 +35,5 @@ public class RestaurantService {
                 .setId(restaurant.getId())
                 .setName(restaurant.getName())
                 .setPhone(restaurant.getPhone());
-
     }
 }
