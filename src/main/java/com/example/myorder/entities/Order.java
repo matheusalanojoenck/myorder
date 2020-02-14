@@ -3,11 +3,11 @@ package com.example.myorder.entities;
 import com.example.myorder.enums.OrderStatusEnum;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "USER_ORDER")
 public class Order {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -15,20 +15,16 @@ public class Order {
     @Column(name = "TOTAL_VALUE", nullable = false)
     private Double totalValue;
 
-    @Column(name = "STATUS", nullable = false)
+    @Column(name = "STAUTS", nullable = false)
     private OrderStatusEnum status;
 
     @ManyToOne
     @JoinColumn(name = "RESTAURANT_ID", nullable = false)
-    private Restaurant restaurant;
+    private Restaurant Restaurant;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
-    private User user;
-
-    @OrderBy("id ASC")
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderItem> items;
+    private User User;
 
     public Integer getId() {
         return id;
@@ -57,30 +53,21 @@ public class Order {
         return this;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public com.example.myorder.entities.Restaurant getRestaurant() {
+        return Restaurant;
     }
 
-    public Order setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public Order setRestaurant(com.example.myorder.entities.Restaurant restaurant) {
+        Restaurant = restaurant;
         return this;
     }
 
-    public User getUser() {
-        return user;
+    public com.example.myorder.entities.User getUser() {
+        return User;
     }
 
-    public Order setUser(User user) {
-        this.user = user;
-        return this;
-    }
-
-    public List<OrderItem> getItems() {
-        return items;
-    }
-
-    public Order setItems(List<OrderItem> items) {
-        this.items = items;
+    public Order setUser(com.example.myorder.entities.User user) {
+        User = user;
         return this;
     }
 }

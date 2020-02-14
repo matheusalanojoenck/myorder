@@ -5,7 +5,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "USER")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -13,7 +12,7 @@ public class User {
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Column(name = "PHONE", nullable = false)
+    @Column(name = "TELEFONE", nullable = false)
     private String phone;
 
     @Column(name = "EMAIL", nullable = false)

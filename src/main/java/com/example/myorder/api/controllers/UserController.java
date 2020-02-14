@@ -1,9 +1,8 @@
 package com.example.myorder.api.controllers;
 
 import com.example.myorder.api.RestPath;
-import com.example.myorder.api.dtos.CreateUserDto;
-import com.example.myorder.api.dtos.RestaurantResponseDto;
-import com.example.myorder.api.dtos.UserResponseDto;
+import com.example.myorder.api.dto.CreateUserDto;
+import com.example.myorder.api.dto.UserResponseDto;
 import com.example.myorder.services.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
@@ -26,23 +25,23 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserResponseDto create(
-            @ApiParam(value = "Objeto que contém as informações do usuário")
-            @RequestBody @Valid CreateUserDto createUserDto) {
+    public UserResponseDto create(@ApiParam(value = "Objeto que contem as informações do usuario")
+                                  @RequestBody
+                                  @Valid
+                                  CreateUserDto createUserDto){
         return userService.create(createUserDto);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping()
-    public UserResponseDto get(@RequestParam @Param("id") Integer id) {
+    public UserResponseDto get(@RequestParam @Param("id") Integer id){
         return userService.findById(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/list")
-    public List<UserResponseDto> list() {
+    public List<UserResponseDto> get(){
         return userService.listAll();
     }
-
 
 }

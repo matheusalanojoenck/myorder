@@ -1,8 +1,8 @@
 package com.example.myorder.services;
 
-import com.example.myorder.api.dtos.CreateProductDto;
-import com.example.myorder.api.dtos.ProductResponseDto;
-import com.example.myorder.api.dtos.RestaurantResponseDto;
+import com.example.myorder.api.dto.CreateProductDto;
+import com.example.myorder.api.dto.ProductResponseDto;
+import com.example.myorder.api.dto.RestaurantResponseDto;
 import com.example.myorder.entities.Product;
 import com.example.myorder.entities.Restaurant;
 import com.example.myorder.repositories.ProductRepository;
@@ -18,7 +18,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public ProductResponseDto create(CreateProductDto createProductDto) {
+    public ProductResponseDto create(CreateProductDto createProductDto){
 
         Restaurant restaurant = restaurantService.findById(createProductDto.getRestaurantId());
 
@@ -39,7 +39,7 @@ public class ProductService {
                 .setName(product.getName())
                 .setValue(product.getValue())
                 .setRestaurant(restaurantResponseDto);
-
     }
 
 }
+

@@ -16,8 +16,8 @@ public class Product {
     @Column(name = "VALUE", nullable = false)
     private Double value;
 
-    @ManyToOne()
-    @JoinColumn(name="RESTAURANT_ID", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "RESTAURANT_ID", nullable = false)
     private Restaurant restaurant;
 
     public Integer getId() {

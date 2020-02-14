@@ -1,7 +1,7 @@
 package com.example.myorder.services;
 
-import com.example.myorder.api.dtos.CreateRestaurantDto;
-import com.example.myorder.api.dtos.RestaurantResponseDto;
+import com.example.myorder.api.dto.CreateRestaurantDto;
+import com.example.myorder.api.dto.RestaurantResponseDto;
 import com.example.myorder.entities.Restaurant;
 import com.example.myorder.exceptions.NotFoundException;
 import com.example.myorder.repositories.RestaurantRepository;
@@ -20,9 +20,9 @@ public class RestaurantService {
         //TODO validações
 
         Restaurant restaurant = new Restaurant()
-                .setEmail(createRestaurantDto.getEmail())
-                .setName(createRestaurantDto.getName())
-                .setPhone(createRestaurantDto.getPhone());
+            .setEmail(createRestaurantDto.getEmail())
+            .setName(createRestaurantDto.getName())
+            .setPhone(createRestaurantDto.getPhone());
 
         restaurantRepository.save(restaurant);
     }
@@ -30,13 +30,13 @@ public class RestaurantService {
     public RestaurantResponseDto getById(Integer id) {
         Restaurant restaurant = findById(id);
         return new RestaurantResponseDto()
-                .setId(restaurant.getId())
                 .setEmail(restaurant.getEmail())
+                .setId(restaurant.getId())
                 .setName(restaurant.getName())
                 .setPhone(restaurant.getPhone());
     }
 
-    public Restaurant findById(Integer id) {
+    public Restaurant findById(Integer id){
         Optional<Restaurant> optional = restaurantRepository.findById(id);
 
         if(!optional.isPresent()) {
@@ -46,5 +46,4 @@ public class RestaurantService {
         Restaurant restaurant = optional.get();
         return restaurant;
     }
-
 }

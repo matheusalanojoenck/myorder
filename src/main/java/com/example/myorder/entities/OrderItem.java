@@ -3,7 +3,7 @@ package com.example.myorder.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name="ORDER_ITEM")
+@Table(name = "ORDER_ITEM")
 public class OrderItem {
 
     @Id
@@ -11,15 +11,15 @@ public class OrderItem {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name="USER_ORDER_ID", nullable = false)
+    @JoinColumn(name = "USER_ORDER_ID", nullable = false)
     private Order order;
 
     @Column(name = "QUANTITY", nullable = false)
     private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name="PRODUCT", nullable = false)
-    private Product product;
+    @Column(name = "PRODUCT", nullable = false)
+    private Integer product;
 
     public Integer getId() {
         return id;
@@ -48,11 +48,11 @@ public class OrderItem {
         return this;
     }
 
-    public Product getProduct() {
+    public Integer getProduct() {
         return product;
     }
 
-    public OrderItem setProduct(Product product) {
+    public OrderItem setProduct(Integer product) {
         this.product = product;
         return this;
     }
