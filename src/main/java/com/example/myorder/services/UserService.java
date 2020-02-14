@@ -1,10 +1,8 @@
 package com.example.myorder.services;
 
 import com.example.myorder.api.dto.CreateUserDto;
-import com.example.myorder.api.dto.RestaurantResponseDto;
 import com.example.myorder.api.dto.UserResponseDto;
 import com.example.myorder.api.mappers.UserMapper;
-import com.example.myorder.entities.Restaurant;
 import com.example.myorder.entities.User;
 import com.example.myorder.exceptions.AlreadyExistsException;
 import com.example.myorder.exceptions.NotFoundException;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -33,24 +30,13 @@ public class UserService {
 
     public UserResponseDto findById(Integer id){
         Optional<User> user = userRepository.findById(id);
+
         if(!user.isPresent()){
-            throw  new NotFoundException("Não existe usuario com esse Id");
+            throw  new NotFoundException("Não existe usuario com o id: " + id);
         }
 
         return UserMapper.toResponseDto(user.get());
     }
-
-//    public List<UserResponseDto> listAll() {
-//        List<User> users = userRepository.findAll();
-//
-//        users.stream().map(user -> new UserResponseDto()
-//                    .setPhone(user.getPhone())
-//                    .setEmail(user.getEmail())
-//                    .setAddress(user.getAddress())
-//                    .setName(user.getName())
-//                    .collect(Collectors.toList());
-//        );
-//    }
 
     public List<UserResponseDto> listAll(){
         List<User> users = userRepository.findAll();
@@ -69,6 +55,27 @@ public class UserService {
         return userResponseDtoList;
     }
 
+//Outras implementações do método listAll()
+//JAVA 8
+//    public List<UserResponseDto> listAll() {
+//        List<User> users = userRepository.findAll();
+//
+//        users.stream().map(user -> new UserResponseDto()
+//                .setName(user.getName())
+//                .setEmail(user.getEmail())
+//                .setPhone(user.getPhone())
+//                .setAddress(user.getAddress()))
+//                .collect(Collectors.toList());
+//    }
+
+//JAVA 8 e ModelMapper
+//    public List<UserResponseDto> listAll() {
+//        List<User> users = userRepository.findAll();
+//
+//        users.stream().map(UserMapper::toResponseDto)
+//                .collect(Collectors.toList());
+//    }
+
 
     private User createUser(CreateUserDto createUserDto){
         return new User()
@@ -86,6 +93,4 @@ public class UserService {
             throw new AlreadyExistsException("Já existe um usuário cadastrado com esse email");
         }
     }
-
-
 }

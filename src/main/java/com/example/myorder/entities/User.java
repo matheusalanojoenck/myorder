@@ -12,7 +12,7 @@ public class User {
     @Column(name = "NAME", nullable = false)
     private String name;
 
-    @Column(name = "TELEFONE", nullable = false)
+    @Column(name = "PHONE", nullable = false)
     private String phone;
 
     @Column(name = "EMAIL", nullable = false)

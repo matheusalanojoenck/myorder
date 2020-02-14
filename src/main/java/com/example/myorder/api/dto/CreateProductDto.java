@@ -3,20 +3,21 @@ package com.example.myorder.api.dto;
 import io.swagger.annotations.ApiModelProperty;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class CreateProductDto {
 
     @NotEmpty
-    @ApiModelProperty(value = "${user.create.name}")
+    @ApiModelProperty(value = "${product.create.name}")
     private String name;
 
-    @NotEmpty
+    @NotNull
     @Min(value = 1, message = "Valor minimo deve ser 1")
-    @ApiModelProperty(value = "${user.create.value}")
+    @ApiModelProperty(value = "${product.create.value}")
     private Double value;
 
-    @NotEmpty
-    @ApiModelProperty(value = "${user.create.restaurantId}")
+    @NotNull
+    @ApiModelProperty(value = "${product.create.restaurantId}")
     private Integer restaurantId;
 
     public String getName() {

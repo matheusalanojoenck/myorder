@@ -5,14 +5,13 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel("Objeto de resposta criação de produto")
 public class ProductResponseDto {
-    @ApiModelProperty(value = "${user.response.name}")
+    @ApiModelProperty(value = "${product.response.name}")
     private String name;
 
-    @ApiModelProperty(value = "${user.response.value}")
+    @ApiModelProperty(value = "${product.response.value}")
     private Double value;
 
-
-    @ApiModelProperty(value = "${user.response.restaurant}")
+    @ApiModelProperty(value = "${product.response.restaurant}")
     private RestaurantResponseDto restaurant;
 
     public String getName() {

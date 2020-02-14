@@ -1,7 +1,6 @@
 package com.example.myorder.api.dto;
 
 import io.swagger.annotations.ApiModelProperty;
-
 import javax.validation.constraints.NotEmpty;
 
 public class UserResponseDto {

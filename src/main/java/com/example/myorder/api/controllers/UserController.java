@@ -40,7 +40,7 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(value = "/list")
-    public List<UserResponseDto> get(){
+    public List<UserResponseDto> list(){
         return userService.listAll();
     }
 

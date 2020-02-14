@@ -3,7 +3,6 @@ package com.example.myorder.api.mappers;
 import com.example.myorder.api.dto.CreateUserDto;
 import com.example.myorder.api.dto.UserResponseDto;
 import com.example.myorder.entities.User;
-import com.example.myorder.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 
 public class UserMapper {
