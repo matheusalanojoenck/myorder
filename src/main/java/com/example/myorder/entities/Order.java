@@ -8,7 +8,6 @@ import java.util.List;
 @Entity
 @Table(name = "USER_ORDER")
 public class Order {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,11 +20,11 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "RESTAURANT_ID", nullable = false)
-    private Restaurant Restaurant;
+    private Restaurant restaurant;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
-    private User User;
+    private User user;
 
     @OrderBy("id ASC")
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
@@ -59,20 +58,20 @@ public class Order {
     }
 
     public Restaurant getRestaurant() {
-        return Restaurant;
+        return restaurant;
     }
 
     public Order setRestaurant(Restaurant restaurant) {
-        Restaurant = restaurant;
+        this.restaurant = restaurant;
         return this;
     }
 
     public User getUser() {
-        return User;
+        return user;
     }
 
     public Order setUser(User user) {
-        User = user;
+        this.user = user;
         return this;
     }
 

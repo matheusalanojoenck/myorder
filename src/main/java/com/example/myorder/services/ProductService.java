@@ -1,13 +1,17 @@
 package com.example.myorder.services;
 
-import com.example.myorder.api.dto.CreateProductDto;
-import com.example.myorder.api.dto.ProductResponseDto;
-import com.example.myorder.api.dto.RestaurantResponseDto;
+import com.example.myorder.api.dtos.CreateProductDto;
+import com.example.myorder.api.dtos.ProductResponseDto;
+import com.example.myorder.api.dtos.RestaurantResponseDto;
+import com.example.myorder.api.mappers.RestaurantMapper;
 import com.example.myorder.entities.Product;
 import com.example.myorder.entities.Restaurant;
+import com.example.myorder.exceptions.NotFoundException;
 import com.example.myorder.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -18,7 +22,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public ProductResponseDto create(CreateProductDto createProductDto){
+    public ProductResponseDto create(CreateProductDto createProductDto) {
 
         Restaurant restaurant = restaurantService.findById(createProductDto.getRestaurantId());
 
@@ -39,7 +43,24 @@ public class ProductService {
                 .setName(product.getName())
                 .setValue(product.getValue())
                 .setRestaurant(restaurantResponseDto);
+
+    }
+
+    public Product findByOd(Integer id){
+        return productRepository.findById(id)
+                .orElseThrow(()-> new NotFoundException("Produto nao encontrado para o id: " + id));
+    }
+
+    public List<Product> listById(List<Integer> ids){
+        return productRepository.findAllById(ids);
+    }
+
+    public ProductResponseDto createProductResponseDto(Product product, Restaurant restaurant){
+        return new ProductResponseDto()
+                .setName(product.getName())
+                .setValue(product.getValue())
+                .setRestaurant(RestaurantMapper.toResponseDto(restaurant));
+
     }
 
 }
-
